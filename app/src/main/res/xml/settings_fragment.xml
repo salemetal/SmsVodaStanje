@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="SMS">
+
+        <EditTextPreference
+            android:key="pref_smsNumber"
+            android:title="Broj mobitela"
+            android:summary="Broj mobitela na koji se šalje stanje vode"
+            android:maxLength="10"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

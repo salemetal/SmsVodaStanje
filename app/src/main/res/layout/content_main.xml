@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="25dp">
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/text_wc"
+        android:hint="WC"
+        android:maxLength="4"
+        android:width="300dp"
+        android:layout_marginTop="60dp"/>
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/text_kupaona"
+        android:hint="KUPAONA"
+        android:maxLength="4"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pošalji SMS"
+        android:id="@+id/buttonSendSms"
+        android:onClick="sendSmsToNumber"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Promijeni početnu vrijednost"
+        android:id="@+id/buttonNewRefValues"
+        android:onClick="insertNewRefValues"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/textViewRefVelues"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
+
+
+</LinearLayout>
