@@ -81,14 +81,15 @@ public class MainActivity extends AppCompatActivity {
 
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                         requestPermissions(new String[]{Manifest.permission.SEND_SMS}, PERMISSION_REQUEST);
-                                        sendSmsToNumber(smsString);
-                                    } else {
-                                        sendSmsToNumber(smsString);
                                     }
+                                    boolean isSmsSent = sendSmsToNumber(smsString);
 
-                                    dbHandler.addWaterStatus(waterStatusNew);
-                                    finish();
-                                    startActivity(getIntent());
+                                    if(isSmsSent)
+                                    {
+                                        dbHandler.addWaterStatus(waterStatusNew);
+                                        finish();
+                                        startActivity(getIntent());
+                                    }
                                 }
                             })
                             .setNegativeButton("NE", new DialogInterface.OnClickListener() {
@@ -108,7 +109,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void sendSmsToNumber(String smsString) {
+    private boolean sendSmsToNumber(String smsString) {
+
+        boolean isSmsSent = false;
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final String brMobForSms = settings.getString(SettingsActivity.KEY_PREF_SMS_NUMBER, "");
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             SmsManager sm = SmsManager.getDefault();
             sm.sendTextMessage(brMobForSms, null, smsString, null, null);
+            isSmsSent = true;
             Toast.makeText(getApplicationContext(), "SMS Sent!",
                     Toast.LENGTH_LONG).show();
         } catch (Exception e) {
@@ -124,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             Log.v(TAG, e.getMessage());
         }
+
+        return isSmsSent;
     }
 
     private String getSmsString(WaterStatus waterStatusLast, WaterStatus waterStatusNew, View v) {
